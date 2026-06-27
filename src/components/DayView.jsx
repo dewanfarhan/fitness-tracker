@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import confetti from 'canvas-confetti';
 import { format, isFuture, isToday } from 'date-fns';
 import { WEEKLY_SCHEDULE } from '../config/workoutSchedule';
 import { calculateTargetTime } from '../utils/timeLogic';
 import { useData } from '../context/DataContext';
 
-export default function DayView() {
+export default function DayView({ selectedDate, setSelectedDate }) {
   const { completedDates, clockIn, getStreak } = useData();
-  const [selectedDate, setSelectedDate] = useState(new Date());
   
   const handlePrevDay = () => {
     const newDate = new Date(selectedDate);
@@ -48,7 +47,7 @@ export default function DayView() {
 
   return (
     <div className="container animate-fade-in">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
         <button onClick={handlePrevDay} style={{ fontSize: '24px', padding: '8px' }}>←</button>
         <div className="text-center">
           <h2 style={{ fontSize: '20px', fontWeight: '700' }}>
@@ -63,18 +62,18 @@ export default function DayView() {
         <button onClick={handleNextDay} style={{ fontSize: '24px', padding: '8px' }}>→</button>
       </div>
 
-      <div className="card text-center" style={{ padding: '32px 24px', border: isCompleted ? '2px solid var(--success-color)' : '1px solid var(--border-color)' }}>
+      <div className="card text-center" style={{ padding: '24px 16px', border: isCompleted ? '2px solid var(--success-color)' : '1px solid var(--border-color)' }}>
         {routine.type !== 'rest' && (
-          <h1 className="text-gradient" style={{ fontSize: '48px', marginBottom: '8px' }}>{targetTime} <span style={{ fontSize: '24px' }}>mins</span></h1>
+          <h1 className="text-gradient" style={{ fontSize: '40px', marginBottom: '4px' }}>{targetTime} <span style={{ fontSize: '20px' }}>mins</span></h1>
         )}
-        <h3 style={{ fontSize: '20px', color: 'var(--text-primary)' }}>{routine.name}</h3>
-        <p className="text-secondary" style={{ marginTop: '8px', textTransform: 'capitalize' }}>{routine.type}</p>
+        <h3 style={{ fontSize: '18px', color: 'var(--text-primary)' }}>{routine.name}</h3>
+        <p className="text-secondary" style={{ marginTop: '4px', textTransform: 'capitalize', fontSize: '14px' }}>{routine.type}</p>
         
         {routine.type !== 'rest' && (
-          <div style={{ marginTop: '32px' }}>
+          <div style={{ marginTop: '24px' }}>
             <button 
               className={`btn ${isCompleted ? 'btn-success' : 'btn-primary'}`} 
-              style={{ width: '100%', padding: '16px', fontSize: '18px' }}
+              style={{ width: '100%', padding: '14px', fontSize: '16px' }}
               onClick={handleClockIn}
               disabled={isCompleted || future}
             >
@@ -97,7 +96,6 @@ export default function DayView() {
                   {ex.reps ? `🎯 Target: ${ex.reps}` : `⏱ Target: ${ex.time}`}
                 </div>
               </div>
-              {/* Image Section */}
               <div style={{ width: '100%', height: '200px', backgroundColor: 'var(--bg-color)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img 
                   src={`/images/${ex.imageRef}.png`} 

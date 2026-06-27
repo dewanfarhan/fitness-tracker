@@ -2,13 +2,18 @@ import React from 'react';
 import { startOfWeek, addDays, format, isFuture, isToday } from 'date-fns';
 import { useData } from '../context/DataContext';
 
-export default function WeekView({ setView }) {
+export default function WeekView({ setView, setSelectedDate }) {
   const { completedDates } = useData();
   
   const today = new Date();
   const start = startOfWeek(today, { weekStartsOn: 1 }); // Monday start
 
   const days = Array.from({ length: 7 }).map((_, i) => addDays(start, i));
+
+  const handleDayClick = (day) => {
+    setSelectedDate(day);
+    setView('day');
+  };
 
   return (
     <div className="container animate-fade-in">
@@ -46,6 +51,7 @@ export default function WeekView({ setView }) {
             <div 
               key={dateStr}
               className="card"
+              onClick={() => handleDayClick(day)}
               style={{ 
                 margin: 0, 
                 padding: '16px', 
@@ -53,7 +59,8 @@ export default function WeekView({ setView }) {
                 border: `1px solid ${borderColor}`,
                 display: 'flex',
                 justifyContent: 'space-between',
-                alignItems: 'center'
+                alignItems: 'center',
+                cursor: 'pointer'
               }}
             >
               <div>

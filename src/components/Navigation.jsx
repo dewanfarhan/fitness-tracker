@@ -3,7 +3,7 @@ import { Calendar, CalendarDays, CheckCircle2 } from 'lucide-react';
 
 export default function Navigation({ currentView, setView }) {
   return (
-    <nav className="bottom-nav">
+    <nav className="top-nav">
       <button 
         className={`nav-item ${currentView === 'day' ? 'active' : ''}`}
         onClick={() => setView('day')}

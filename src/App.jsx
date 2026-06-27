@@ -7,17 +7,29 @@ import DayView from './components/DayView';
 import WeekView from './components/WeekView';
 import MonthView from './components/MonthView';
 import { LogOut } from 'lucide-react';
+import { isToday } from 'date-fns';
 
 function Dashboard() {
   const { currentUser, logout } = useAuth();
   const [currentView, setCurrentView] = useState('day');
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const handleNavChange = (view) => {
+    if (view === 'day') {
+      // If clicking day view, always reset to today if they are currently on day view but not on today
+      if (currentView === 'day' && !isToday(selectedDate)) {
+        setSelectedDate(new Date());
+      }
+    }
+    setCurrentView(view);
+  };
 
   const renderView = () => {
     switch (currentView) {
-      case 'day': return <DayView />;
-      case 'week': return <WeekView setView={setCurrentView} />;
+      case 'day': return <DayView selectedDate={selectedDate} setSelectedDate={setSelectedDate} />;
+      case 'week': return <WeekView setView={setCurrentView} setSelectedDate={setSelectedDate} />;
       case 'month': return <MonthView />;
-      default: return <DayView />;
+      default: return <DayView selectedDate={selectedDate} setSelectedDate={setSelectedDate} />;
     }
   };
 
@@ -32,9 +44,13 @@ function Dashboard() {
         )}
       </header>
       
+      {/* Navigation moved to top */}
+      <div style={{ paddingBottom: '16px' }}>
+        <Navigation currentView={currentView} setView={handleNavChange} />
+      </div>
+
       {renderView()}
       
-      <Navigation currentView={currentView} setView={setCurrentView} />
     </DataProvider>
   );
 }
