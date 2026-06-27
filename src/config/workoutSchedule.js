@@ -2,7 +2,7 @@ export const START_DATE = new Date('2026-06-28T00:00:00');
 
 export const WEEKLY_SCHEDULE = {
   1: { // Monday
-    name: "Full Body Burn",
+    name: "Full Body Burn (A)",
     type: "workout",
     exercises: [
       { 
@@ -26,7 +26,7 @@ export const WEEKLY_SCHEDULE = {
     ]
   },
   2: { // Tuesday
-    name: "Core & Cardio",
+    name: "Core & Legs",
     type: "workout",
     exercises: [
       { 
@@ -36,10 +36,10 @@ export const WEEKLY_SCHEDULE = {
         imageRef: "cardio"
       },
       { 
-        name: "Mountain Climbers", 
-        description: "Start in a push-up position. Quickly drive one knee towards your chest, then switch legs as if you are running horizontally.",
-        time: "20 seconds (3 rounds)",
-        imageRef: "mountainclimbers"
+        name: "Alternating Lunges", 
+        description: "Take a big step forward and lower your hips until both knees are bent at a 90-degree angle. Push back up and switch legs.",
+        reps: "3 sets of 10 reps per leg",
+        imageRef: "lunges"
       },
       { 
         name: "Plank Hold", 
@@ -68,36 +68,7 @@ export const WEEKLY_SCHEDULE = {
     ]
   },
   4: { // Thursday
-    name: "Lower Body Power",
-    type: "workout",
-    exercises: [
-      { 
-        name: "Alternating Lunges", 
-        description: "Take a big step forward and lower your hips until both knees are bent at a 90-degree angle. Push back up and switch legs.",
-        reps: "3 sets of 10 reps per leg",
-        imageRef: "lunges"
-      },
-      { 
-        name: "Glute Bridges", 
-        description: "Lie on your back, knees bent, feet on the floor. Push through your heels to lift your hips high. Squeeze your glutes at the top.",
-        reps: "3 sets of 15 reps",
-        imageRef: "hiplift"
-      },
-      { 
-        name: "Calf Raises", 
-        description: "Stand tall. Push up onto your toes as high as you can, hold for a second, then slowly lower your heels to the floor.",
-        reps: "3 sets of 20 reps",
-        imageRef: "calfraises"
-      }
-    ]
-  },
-  5: { // Friday
-    name: "Total Rest Day",
-    type: "rest",
-    exercises: []
-  },
-  6: { // Saturday
-    name: "High-Intensity Express",
+    name: "Cardio & Glutes",
     type: "workout",
     exercises: [
       { 
@@ -107,16 +78,45 @@ export const WEEKLY_SCHEDULE = {
         imageRef: "jumpingjacks"
       },
       { 
+        name: "Glute Bridges", 
+        description: "Lie on your back, knees bent, feet on the floor. Push through your heels to lift your hips high. Squeeze your glutes at the top.",
+        reps: "3 sets of 15 reps",
+        imageRef: "hiplift"
+      },
+      { 
+        name: "Mountain Climbers", 
+        description: "Start in a push-up position. Quickly drive one knee towards your chest, then switch legs as if you are running horizontally.",
+        time: "20 seconds (3 rounds)",
+        imageRef: "mountainclimbers"
+      }
+    ]
+  },
+  5: { // Friday
+    name: "Total Rest Day",
+    type: "rest",
+    exercises: []
+  },
+  6: { // Saturday
+    name: "Full Body Burn (B)",
+    type: "workout",
+    exercises: [
+      { 
+        name: "High Knees", 
+        description: "Run in place as fast as you can, lifting your knees up to your waist with every step.",
+        time: "30 seconds (3 rounds)",
+        imageRef: "cardio"
+      },
+      { 
         name: "Air Squats", 
         description: "Push your hips back and bend your knees as if sitting in an invisible chair, then stand back up.",
         reps: "3 sets of 15 reps",
         imageRef: "squat"
       },
       { 
-        name: "Mountain Climbers", 
-        description: "From a push-up position, quickly drive one knee towards your chest, then switch legs as if running horizontally.",
-        time: "20 seconds (3 rounds)",
-        imageRef: "mountainclimbers"
+        name: "Push-ups (Knee or Wall)", 
+        description: "Keep your body straight. Lower your chest and push back up until arms are straight.",
+        reps: "3 sets of 10 reps",
+        imageRef: "pushup"
       }
     ]
   },
